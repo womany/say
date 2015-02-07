@@ -1,0 +1,9 @@
+.bundle
+.DS_Store
+.powrc
+*.*~
+*.swp
+*.swo
+tmp
+application.yml
+
