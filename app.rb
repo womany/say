@@ -15,5 +15,37 @@ class Say
     bg = request.params["bg"] || ""
     quotes = request.params["quotes"] || ""
     next {:code => "bg and quotes can't be blank."}.to_json if (bg == "") || (quotes == "")
+
+    quote1, quote2, quote3 = quotes.split(',')
+    if quote2.nil? && quote3.nil?
+      quote2 = quote1
+      quote1 = nil
+    end
+
+    quote_function1 = "text 0,-68 '#{quote1}'"
+    quote_function2 = "text 0,0   '#{quote2}'"
+    quote_function3 = "text 0,68  '#{quote3}'"
+
+    image = MiniMagick::Image.open("images/#{bg}.jpg")
+    image.combine_options do |c|
+      c.font "fonts/NotoSansCJKtc-Bold.otf"
+      c.pointsize "48"
+      c.gravity "Center"
+      c.draw quote_function1
+      c.fill "white"
+      c.draw quote_function2
+      c.fill "white"
+      c.draw quote_function3
+      c.fill "white"
+    end
+
+    timestamp = Time.now.to_i
+    rand = rand(100)
+    image.write("quotes/#{bg}-#{timestamp}-#{rand}.jpg")
+
+    {
+      :image => "#{Settings.dns_name}/quotes/#{bg}-#{timestamp}-#{rand}.jpg",
+      :code => 'success'
+    }
   end
 end
