@@ -1,8 +1,6 @@
-require "settingslogic"
-
-class Settings < Settingslogic
-  source "application.yml"
-end
+# development used only
+# require "dotenv"
+# Dotenv.load
 
 require "json"
 require "mini_magick"

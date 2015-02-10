@@ -10,5 +10,5 @@ RUN     mkdir -p /docker-app
 WORKDIR /docker-app
 ADD     . /docker-app
 
-RUN     bundle install
+RUN     bundle install --without development
 CMD     ["rainbows", "-N", "-p", "7777", "-c", "rainbows.rb", "config.ru"]

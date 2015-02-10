@@ -4,4 +4,4 @@ gem "jellyfish"
 gem "rainbows"
 gem "mini_magick"
 gem "rack-cors"
-gem "settingslogic"
+gem 'dotenv-rails', :groups => [:development]
