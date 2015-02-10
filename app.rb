@@ -17,13 +17,15 @@ class Say
     if folder != ""
       files = Dir["images/#{folder}/*.jpg"]
 
-      hash = {}
+      array = []
       files.each do |f|
-        hash[:url]  = "#{SERVER_NAME}/#{f}"
-        hash[:name] = f.split("/").last.split(".").first
+        array << {
+                   :url => "#{SERVER_NAME}/#{f}",
+                   :name => f.split("/").last.split(".").first
+                 }
       end
 
-      hash.to_json
+      array.to_json
     else
       {
         :code => "params is empty."
