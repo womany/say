@@ -45,6 +45,7 @@ class Say
     folder, filename = bg.split("/")
 
     quote1, quote2, quote3 = quotes.split("\r\n")
+    [quote1, quote2, quote3].each {|q| q.strip! if q }
     if quote2.nil? && quote3.nil?
       quote2 = quote1
       quote1 = nil
