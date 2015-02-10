@@ -21,7 +21,7 @@ class Say
       hash[:name] = f.split("/").last.split(".").first
     end
 
-    hash
+    hash.to_json
   end
 
   post "/to" do
