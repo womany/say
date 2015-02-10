@@ -21,8 +21,8 @@ class Say
 
       array = []
       files.each do |f|
-        path = f.sub('public/', '')
-        name = f.split("/").last.split(".").first
+        path = f.sub("public/", "")
+        name = f.split("/").last(2).join("/").split(".").first
         array << {
                    :url => "#{SERVER_NAME}/#{path}",
                    :name => name
@@ -42,6 +42,8 @@ class Say
     quotes = request.params["quotes"] || ""
     next {:code => "bg and quotes can't be blank."}.to_json if (bg == "") || (quotes == "")
 
+    folder, filename = bg.split("/")
+
     quote1, quote2, quote3 = quotes.split("\r\n")
     if quote2.nil? && quote3.nil?
       quote2 = quote1
@@ -52,7 +54,7 @@ class Say
     quote_function2 = "text 0,0   '#{quote2}'"
     quote_function3 = "text 0,60  '#{quote3}'"
 
-    image = MiniMagick::Image.open("public/images/#{bg}.jpg")
+    image = MiniMagick::Image.open("public/images/#{folder}/#{filename}.jpg")
     image.combine_options do |c|
       c.font "fonts/NotoSansCJKtc-Bold.otf"
       c.pointsize "40"
