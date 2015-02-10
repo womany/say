@@ -1,8 +1,6 @@
-require "settingslogic"
-
-class Settings < Settingslogic
-  source "application.yml"
-end
+# development used only
+# require "dotenv"
+# Dotenv.load
 
 require "json"
 require "mini_magick"
@@ -11,13 +9,15 @@ require "jellyfish"
 class Say
   include Jellyfish
 
+  SERVER_NAME = ENV['SERVER_NAME']
+
   get "/bg-list" do
     folder = request.params["folder"] || ""
     files = Dir["images/#{folder}/*.jpg"]
 
     hash = {}
     files.each do |f|
-      hash[:url]  = "#{Settings.dns_name}/#{f}"
+      hash[:url]  = "#{SERVER_NAME}/#{f}"
       hash[:name] = f.split("/").last.split(".").first
     end
 
@@ -57,7 +57,7 @@ class Say
     image.write("quotes/#{bg}-#{timestamp}-#{rand}.jpg")
 
     {
-      :image => "#{Settings.dns_name}/quotes/#{bg}-#{timestamp}-#{rand}.jpg",
+      :image => "#{SERVER_NAME}/quotes/#{bg}-#{timestamp}-#{rand}.jpg",
       :code => 'success'
     }
   end

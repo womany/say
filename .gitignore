@@ -5,5 +5,5 @@
 *.swp
 *.swo
 tmp
-application.yml
+.env
 
