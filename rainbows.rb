@@ -1,4 +1,3 @@
-listen "/tmp/rainbows.say.sock"
 worker_processes 10
 timeout 30
 
