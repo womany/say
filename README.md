@@ -4,4 +4,4 @@
 
 # RUN on Server
 
-    docker run -d -p 80:7777 wildjcrt/say
+    docker run -d -p 80:7777 -e SERVER_NAME=yourservername wildjcrt/say
