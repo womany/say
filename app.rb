@@ -36,7 +36,7 @@ class Say
     quotes = request.params["quotes"] || ""
     next {:code => "bg and quotes can't be blank."}.to_json if (bg == "") || (quotes == "")
 
-    quote1, quote2, quote3 = quotes.split(',')
+    quote1, quote2, quote3 = quotes.split("\r\n")
     if quote2.nil? && quote3.nil?
       quote2 = quote1
       quote1 = nil
