@@ -1,6 +1,8 @@
 # development used only
-require "dotenv"
-Dotenv.load
+if ENV["RACK_ENV"] == "development"
+  require "dotenv"
+  Dotenv.load
+end
 
 require "json"
 require "mini_magick"

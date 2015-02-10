@@ -11,4 +11,4 @@ WORKDIR /docker-app
 ADD     . /docker-app
 
 RUN     bundle install --without development
-CMD     ["rainbows", "-N", "-p", "7777", "-c", "rainbows.rb", "config.ru"]
+CMD     ["rainbows", "-N", "-E", "production", "-p", "7777", "-c", "rainbows.rb", "config.ru"]
