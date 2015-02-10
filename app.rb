@@ -48,14 +48,14 @@ class Say
       quote1 = nil
     end
 
-    quote_function1 = "text 0,-68 '#{quote1}'"
+    quote_function1 = "text 0,-60 '#{quote1}'"
     quote_function2 = "text 0,0   '#{quote2}'"
-    quote_function3 = "text 0,68  '#{quote3}'"
+    quote_function3 = "text 0,60  '#{quote3}'"
 
     image = MiniMagick::Image.open("public/images/#{bg}.jpg")
     image.combine_options do |c|
       c.font "fonts/NotoSansCJKtc-Bold.otf"
-      c.pointsize "48"
+      c.pointsize "40"
       c.gravity "Center"
       c.draw quote_function1
       c.fill "white"
