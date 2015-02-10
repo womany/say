@@ -1,6 +1,6 @@
 # development used only
-# require "dotenv"
-# Dotenv.load
+require "dotenv"
+Dotenv.load
 
 require "json"
 require "mini_magick"
@@ -15,13 +15,15 @@ class Say
     folder = request.params["folder"] || ""
 
     if folder != ""
-      files = Dir["images/#{folder}/*.jpg"]
+      files = Dir["public/images/#{folder}/*.jpg"]
 
       array = []
       files.each do |f|
+        path = f.sub('public/', '')
+        name = f.split("/").last.split(".").first
         array << {
-                   :url => "#{SERVER_NAME}/#{f}",
-                   :name => f.split("/").last.split(".").first
+                   :url => "#{SERVER_NAME}/#{path}",
+                   :name => name
                  }
       end
 
@@ -48,7 +50,7 @@ class Say
     quote_function2 = "text 0,0   '#{quote2}'"
     quote_function3 = "text 0,68  '#{quote3}'"
 
-    image = MiniMagick::Image.open("images/#{bg}.jpg")
+    image = MiniMagick::Image.open("public/images/#{bg}.jpg")
     image.combine_options do |c|
       c.font "fonts/NotoSansCJKtc-Bold.otf"
       c.pointsize "48"
@@ -63,7 +65,7 @@ class Say
 
     timestamp = Time.now.to_i
     rand = rand(100)
-    image.write("quotes/#{bg}-#{timestamp}-#{rand}.jpg")
+    image.write("public/quotes/#{bg}-#{timestamp}-#{rand}.jpg")
 
     {
       :image => "#{SERVER_NAME}/quotes/#{bg}-#{timestamp}-#{rand}.jpg",
