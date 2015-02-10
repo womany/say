@@ -13,15 +13,22 @@ class Say
 
   get "/bg-list" do
     folder = request.params["folder"] || ""
-    files = Dir["images/#{folder}/*.jpg"]
 
-    hash = {}
-    files.each do |f|
-      hash[:url]  = "#{SERVER_NAME}/#{f}"
-      hash[:name] = f.split("/").last.split(".").first
+    if folder != ""
+      files = Dir["images/#{folder}/*.jpg"]
+
+      hash = {}
+      files.each do |f|
+        hash[:url]  = "#{SERVER_NAME}/#{f}"
+        hash[:name] = f.split("/").last.split(".").first
+      end
+
+      hash.to_json
+    else
+      {
+        :code => "params is empty."
+      }.to_json
     end
-
-    hash.to_json
   end
 
   post "/to" do
