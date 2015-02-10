@@ -11,6 +11,19 @@ require "jellyfish"
 class Say
   include Jellyfish
 
+  get "/bg-list" do
+    folder = request.params["folder"] || ""
+    files = Dir["images/#{folder}/*.jpg"]
+
+    hash = {}
+    files.each do |f|
+      hash[:url]  = "#{Settings.dns_name}/#{f}"
+      hash[:name] = f.split("/").last.split(".").first
+    end
+
+    hash
+  end
+
   post "/to" do
     bg = request.params["bg"] || ""
     quotes = request.params["quotes"] || ""
