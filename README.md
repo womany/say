@@ -4,10 +4,10 @@
 
 ## RUN on Server
 
-    docker run -d -p 80:7777 -e SERVER_NAME=yourservername wildjcrt/say
+    docker run -d -p 80:7777 -e SERVER_NAME=yourservername womany/say
 
 ## Upgrade server
 
-    docker pull wildjcrt/say
+    docker pull womany/say
     docker ps
-    docker stop running-docker-name && docker run -d -p 80:7777 -e SERVER_NAME=yourservername wildjcrt/say
+    docker stop running-docker-name && docker run -d -p 80:7777 -e SERVER_NAME=yourservername womany/say
