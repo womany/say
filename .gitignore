@@ -6,4 +6,4 @@
 *.swo
 tmp
 .env
-
+public/quotes/*
