@@ -51,30 +51,53 @@ class Say
       quote1 = nil
     end
 
-    quote_function1 = "text 0,-60 '#{quote1}'"
-    quote_function2 = "text 0,0   '#{quote2}'"
-    quote_function3 = "text 0,60  '#{quote3}'"
-
     image = MiniMagick::Image.open("public/images/#{folder}/#{filename}.jpg")
-    image.combine_options do |c|
-      c.font "fonts/NotoSansCJKtc-Bold.otf"
-      c.pointsize "40"
-      c.gravity "Center"
-      c.draw quote_function1
-      c.fill "white"
-      c.draw quote_function2
-      c.fill "white"
-      c.draw quote_function3
-      c.fill "white"
+
+    case folder
+    when "vday2015"
+      position = 60
+      quote_function1 = "text 0,-#{position} '#{quote1}'"
+      quote_function2 = "text 0,0 '#{quote2}'"
+      quote_function3 = "text 0,#{position} '#{quote3}'"
+
+      image.combine_options do |c|
+        c.font "fonts/NotoSansCJKtc-Bold.otf"
+        c.pointsize "40"
+        c.gravity "Center"
+        c.draw quote_function1
+        c.fill "white"
+        c.draw quote_function2
+        c.fill "white"
+        c.draw quote_function3
+        c.fill "white"
+      end
+    when "demo"
+      position = 80
+      height = 30
+      quote_function1 = "translate 90,#{position + height * 0} rotate -17 text 0,0 '#{quote1}'"
+      quote_function2 = "translate 100,#{position + height * 1} rotate -17 text 0,0 '#{quote2}'"
+      quote_function3 = "translate 110,#{position + height * 2} rotate -17 text 0,0 '#{quote3}'"
+
+      image.combine_options do |c|
+        c.font "fonts/NotoSansCJKtc-Bold.otf"
+        c.pointsize "20"
+        c.draw quote_function1
+        c.fill "black"
+        c.draw quote_function2
+        c.fill "black"
+        c.draw quote_function3
+        c.fill "black"
+      end
     end
 
     timestamp = Time.now.to_i
     rand = rand(100)
-    image.write("public/quotes/#{bg}-#{timestamp}-#{rand}.jpg")
+    image_with_quote = "#{filename}-#{timestamp}-#{rand}.jpg"
+    image.write("public/quotes/#{image_with_quote}")
 
     {
-      :image => "#{SERVER_NAME}/quotes/#{bg}-#{timestamp}-#{rand}.jpg",
+      :image => "#{SERVER_NAME}/quotes/#{image_with_quote}",
       :code => 'success'
-    }
+    }.to_json
   end
 end
