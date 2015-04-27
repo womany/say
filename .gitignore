@@ -7,3 +7,5 @@
 tmp
 .env
 public/quotes/*
+.ruby-version
+.ruby-gemset
