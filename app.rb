@@ -54,7 +54,7 @@ class Say
     image = MiniMagick::Image.open("public/images/#{folder}/#{filename}.jpg")
 
     case folder
-    when "vday2015"
+    when "vday2015", "201511sofina"
       position = 60
       quote_function1 = "text 0,-#{position} '#{quote1}'"
       quote_function2 = "text 0,0 '#{quote2}'"
