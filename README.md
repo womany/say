@@ -2,12 +2,6 @@
 
     rainbows -N -p 7777 -c rainbows.rb config.ru
 
-## RUN on Server
+# RUN on production
 
-    docker run -d -p 80:7777 -e SERVER_NAME=yourservername womany/say
-
-## Upgrade server
-
-    docker pull womany/say
-    docker ps
-    docker stop running-docker-name && docker run -d -p 80:7777 -e SERVER_NAME=yourservername womany/say
+    rainbows -N -o 127.0.0.1 -p 12788 -E production -c rainbows.rb config.ru
