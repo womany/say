@@ -9,3 +9,4 @@ tmp
 public/quotes/*
 .ruby-version
 .ruby-gemset
+config/application.yml
