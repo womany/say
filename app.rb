@@ -1,9 +1,3 @@
-# development used only
-if ENV["RACK_ENV"] == "development"
-  require "dotenv"
-  Dotenv.load
-end
-
 require "json"
 require "mini_magick"
 require "jellyfish"
@@ -11,7 +5,7 @@ require "jellyfish"
 class Say
   include Jellyfish
 
-  SERVER_NAME = ENV['SERVER_NAME']
+  SERVER_NAME = Settings.dns_name
 
   get "/bg-list" do
     folder = request.params["folder"] || ""

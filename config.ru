@@ -1,4 +1,11 @@
 require "rack/cors"
+require "settingslogic"
+class Settings < Settingslogic
+  source File.join(File.dirname(__FILE__), "config/application.yml")
+  namespace ENV['RACK_ENV']
+  load!
+end
+
 require File.join(File.dirname(__FILE__), "app")
 
 use Rack::Static,
