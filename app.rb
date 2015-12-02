@@ -39,7 +39,11 @@ class Say
     folder, filename = bg.split("/")
 
     quote1, quote2, quote3 = quotes.split("\n")
-    [quote1, quote2, quote3].each {|q| q.strip! if q }
+    [quote1, quote2, quote3].each do |q|
+      next if q.nil?
+      q.strip!
+      q.gsub!("'", "\\\\'")
+    end
     if quote2.nil? && quote3.nil?
       quote2 = quote1
       quote1 = nil
