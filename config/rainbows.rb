@@ -17,3 +17,15 @@ Rainbows! do
   worker_connections 400 # default:50
   keepalive_requests 200 # default:100
 end
+
+before_fork do |server, worker|
+  # Quit the old rainbows process
+  old_pid = "#{server.config[:pid]}.oldbin"
+  if File.exists?(old_pid) && server.pid != old_pid
+    begin
+      Process.kill("QUIT", File.read(old_pid).to_i)
+    rescue Errno::ENOENT, Errno::ESRCH
+      # someone else did our job for us
+    end
+  end
+end
