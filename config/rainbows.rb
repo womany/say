@@ -5,6 +5,7 @@ if ENV["RACK_ENV"] == "production"
   pid "#{app_path}/tmp/pids/rainbows.pid"
   stderr_path "#{app_path}/log/rainbows.log"
   stdout_path "#{app_path}/log/rainbows.log"
+  listen "/tmp/rainbows.say.sock"
   worker_processes 2
 else
   worker_processes 1

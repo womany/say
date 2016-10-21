@@ -17,7 +17,7 @@ namespace :rainbows do
         if test("[ -e #{fetch(:rainbows_pid)} ] && kill -0 #{pid}")
           info "rainbows is running..."
         else
-          execute :bundle, "exec rainbows", "-c", fetch(:rainbows_config_path), "config.ru", "-p", fetch(:rainbows_port), "-E", fetch(:rainbows_rack_env), "-D", fetch(:rainbows_options)
+          execute :bundle, "exec rainbows", "-c", fetch(:rainbows_config_path), "config.ru", "-E", fetch(:rainbows_rack_env), "-D", fetch(:rainbows_options)
         end
       end
     end

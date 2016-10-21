@@ -36,7 +36,6 @@ set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids')
 
 set :rvm_type, :user                     # Defaults to: :auto
 set :rvm_ruby_version, '2.2.3'           # Defaults to: 'default'
-set :rainbows_port, 12788
 
 after 'deploy:publishing', 'deploy:restart'
 namespace :deploy do
