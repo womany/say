@@ -5,7 +5,7 @@ if ENV["RACK_ENV"] == "production"
   pid "#{app_path}/tmp/pids/rainbows.pid"
   stderr_path "#{app_path}/log/rainbows.log"
   stdout_path "#{app_path}/log/rainbows.log"
-  worker_processes 5
+  worker_processes 2
 else
   worker_processes 1
 end
