@@ -4,6 +4,7 @@
 *.*~
 *.swp
 *.swo
+log
 tmp
 .env
 public/quotes/*
