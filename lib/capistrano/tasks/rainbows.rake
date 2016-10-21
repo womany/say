@@ -3,7 +3,6 @@ namespace :load do
     set :rainbows_pid, -> { File.join(current_path, "tmp", "pids", "rainbows.pid") }
     set :rainbows_config_path, -> { File.join(current_path, "config", "rainbows.rb") }
     set :rainbows_roles, -> { :app }
-    set :rainbows_options, -> { "" }
     set :rainbows_rack_env, -> { "production" }
     set :rainbows_restart_sleep_time, 3
   end
@@ -17,7 +16,7 @@ namespace :rainbows do
         if test("[ -e #{fetch(:rainbows_pid)} ] && kill -0 #{pid}")
           info "rainbows is running..."
         else
-          execute :bundle, "exec rainbows", "-c", fetch(:rainbows_config_path), "config.ru", "-E", fetch(:rainbows_rack_env), "-D", fetch(:rainbows_options)
+          execute :bundle, "exec rainbows", "-c", fetch(:rainbows_config_path), "config.ru", "-E", fetch(:rainbows_rack_env), "-D"
         end
       end
     end

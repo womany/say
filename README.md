@@ -4,4 +4,4 @@
 
 # RUN on production
 
-    rainbows -N -o 127.0.0.1 -p 12788 -E production -c rainbows.rb config.ru
+    rainbows -c rainbows.rb config.ru -E production -D
