@@ -3,9 +3,11 @@
 # Defines a single server with a list of roles and multiple properties.
 # You can define all roles on a single server, or split them:
 
-server '54.248.225.216', user: 'apps', port: 22792, roles: %w{app db web}, my_property: :my_value
-
-
+server '13.114.144.47', 
+  user: 'apps', 
+  port: 22792, 
+  roles: %w{app db web}, 
+  my_property: :my_value
 
 # role-based syntax
 # ==================
