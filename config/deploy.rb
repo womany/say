@@ -32,10 +32,10 @@ set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids')
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
 
 # Default value for keep_releases is 5
-# set :keep_releases, 5
+set :keep_releases, 3
 
-set :rvm_type, :user                     # Defaults to: :auto
-set :rvm_ruby_version, '2.2.3'           # Defaults to: 'default'
+set :rvm_type, :user           # Defaults to: :auto
+set :rvm_ruby_version, '2.3.5' # Defaults to: 'default'
 
 after 'deploy:publishing', 'deploy:restart'
 namespace :deploy do
