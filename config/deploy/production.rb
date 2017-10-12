@@ -3,7 +3,7 @@
 # Defines a single server with a list of roles and multiple properties.
 # You can define all roles on a single server, or split them:
 
-server '13.114.144.47', 
+server '52.197.187.145', 
   user: 'apps', 
   port: 22792, 
   roles: %w{app db web}, 
