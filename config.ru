@@ -17,7 +17,7 @@ use Rack::ContentLength
 use Rack::ContentType, "application/json; charset=utf-8"
 use Rack::Cors do
   allow do
-    origins 'womany.dev', 'womany.net'
+    origins 'womany.test', 'womany.net'
     resource '*', :headers => :any, :methods => [:get]
   end
 end
