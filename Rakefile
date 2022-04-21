@@ -244,7 +244,7 @@ task :lhh_covers do
     [701, "【性愛成癮的女人】超越尺度一睹好萊塢明星高潮畫面"],
     [710, "如果非得跳入火坑 分手砲的 5 個建議"],
     [717, "慾火壓不住？分辨是否有性愛成癮症的 20 個徵兆"],
-    [718, "就是喜歡打野戰 挑戰戶外性愛時必知的五件事"],
+    [718, "就是喜歡打野戰！挑戰戶外性愛時必知的五件事"],
     [722, "臉紅知識家：古代千奇百怪避孕妙招"],
     [727, "於是他撿了隻流浪貓"],
     [734, "八成五女性認為自己來更享受的七個理由"],
@@ -360,9 +360,39 @@ task :lhh_covers do
 
     title1, title2 = title.chars.each_slice(19).map(&:join)
     if title2 != nil
+      if title.include?("：")
+        title1, title2 = title.lines("：")
+
+        if (title2.size > 19) && (id != 1380)
+          title1, title2 = title.chars.each_slice(19).map(&:join)
+        end
+      elsif title.include?(">")
+        title1, title2 = title.lines(">")
+      elsif title.include?("，")
+        array = title.lines("，")
+        title2 = array.pop
+        title1 = array.join
+      elsif title.include?("？")
+        title1, title2 = title.lines("？")
+
+        if title1.size > 19
+          title1, title2 = title.chars.each_slice(19).map(&:join)
+        end
+      elsif title.include?("！")
+        title1, title2 = title.lines("！")
+      elsif (id == 194) || (id == 314)
+        title1 = "#{title1}#{title2}"
+        title2 = nil
+      end
+
       foldersize = '2'
-      draw_text1 = "text 0,#{position + height * 1} '#{title1}'"
-      draw_text2 = "text 0,#{position + height * 0} '#{title2}'"
+
+      if title2.nil?
+        draw_text1 = "text 0,#{position + height * 0} '#{title1}'"
+      else
+        draw_text1 = "text 0,#{position + height * 1} '#{title1}'"
+        draw_text2 = "text 0,#{position + height * 0} '#{title2}'"
+      end
     else
       foldersize = '1'
       draw_text1 = "text 0,#{position + height * 0} '#{title1}'"
