@@ -576,10 +576,10 @@ task :lhh_covers do
 
     title1, title2 = title.chars.each_slice(19).map(&:join)
     if title2 != nil
-      if title.include?("：")
+      if title.include?("：") && (id != 29020) && (id != 29288)
         title1, title2 = title.lines("：")
 
-        if (title2.size > 19) && (id != 1380)
+        if (title2.size > 19) && (id != 1380) && (id != 28938)
           title1, title2 = title.chars.each_slice(19).map(&:join)
         end
       elsif title.include?(">")
@@ -594,9 +594,13 @@ task :lhh_covers do
         if title1.size > 19
           title1, title2 = title.chars.each_slice(19).map(&:join)
         end
-      elsif title.include?("！")
+      elsif title.include?("！") && !title.end_with?("！")
         title1, title2 = title.lines("！")
-      elsif (id == 194) || (id == 314)
+      elsif title.include?("】") && (id == 28951)
+        title1, title2 = title.lines("】")
+      elsif title.include?("”") && (id == 28963)
+        title1, title2 = title.lines("”")
+      elsif (id == 194) || (id == 314) || (id == 28788) || (id == 29354)
         title1 = "#{title1}#{title2}"
         title2 = nil
       end
